@@ -1,6 +1,6 @@
 # counters
 
-This is a webservice using JAX-RS and Jersey.
+This is a JAX-RS webservice using Maven and Jersey.
 
 This API provides functions to
 
