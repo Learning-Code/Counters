@@ -15,14 +15,16 @@ import org.sajid.ali.counters.Model.Counter;
 import org.sajid.ali.counters.Service.CounterService;
 
 @Path("/counters")
+@Consumes(MediaType.APPLICATION_JSON)
+//@Produces(MediaType.APPLICATION_JSON)
+@Produces(value={MediaType.APPLICATION_JSON,MediaType.TEXT_XML})
 public class CountersResource {
 
 	CounterService counterService =new CounterService();
 	
 	
 	//To get the list of all counter
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
+	@GET	
 	public List<Counter> getCounters(){
 		
 		return counterService.getAllCounters();
@@ -31,7 +33,8 @@ public class CountersResource {
 	//To get a specific counter
 	@GET
 	@Path("/{counterName}")
-	@Produces(MediaType.APPLICATION_JSON)
+	//@Produces(MediaType.APPLICATION_JSON)
+	
 	
 	public Counter getCounter(@PathParam("counterName") String counterName){
 		
@@ -39,18 +42,13 @@ public class CountersResource {
 	}
 	//to add a new counter
 	@POST
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
 	public Counter addCounter(Counter counter){
 		return counterService.addCounter(counter);
 		
 	}
-	
 	//To update a counter by name
 	@PUT
-	@Path("/{counterName}")
-	@Produces(MediaType.APPLICATION_JSON)
-	@Consumes(MediaType.APPLICATION_JSON)
+	@Path("/{counterName}")	
 	public Counter updateCounter(@PathParam("counterName") String counterName){
 		
 		Counter counter=new Counter();
